@@ -2,7 +2,7 @@
 const fetch = require('node-fetch');
 
 const SEMGREP_BASE_URL = 'https://semgrep.dev/api/'
-const SEMGREP_APP_TOKEN = 'a7d6329a5bb0bd4100bdb73f61fde8b5cb8778887575e541e1b8897b3d48d01c'
+const SEMGREP_APP_TOKEN = process.env.SEMGREP_APP_TOKEN;
 
 // Function to fetch scan results from Semgrep API
 async function getSemgrepScanResults(apiUrl, apiToken) {
