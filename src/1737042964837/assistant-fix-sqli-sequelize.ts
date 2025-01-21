@@ -3,12 +3,8 @@ function getCriteria(query: any): string {
 }
 
 function fetchProducts(criteria: string) {
-  const query = `
-    SELECT * FROM Products 
-    WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) 
-    ORDER BY name
-  `;
-  return models.sequelize.query(query);
+  const query = "SELECT * FROM Products WHERE ((name LIKE :criteria OR description LIKE :criteria) AND deletedAt IS NULL) ORDER BY name";
+  return models.sequelize.query(query, { replacements: { criteria: `%${criteria}%` } });
 }
 
 function localizeProducts(req: Request, products: any[]): any[] {
